@@ -25,15 +25,21 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
+  })
+  .then((response) => response.json())
+  .then((data) => console.log('GET request', data))
+  .catch((err) => {
+    console.error(err);
   });
 
-const saveNote = (note) =>
+const saveNote = (note) => {
   fetch('/api/notes', {
     method: 'POST',
     headers: {
@@ -42,10 +48,11 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   })
   .then((response) => response.json())
-  .then((data) => {
-    console.log(data)
-    alert('Note saved!')
+  .then((data) => console.log('POST request data', data))
+  .catch((error) => {
+    console.error(error)
   })
+};
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -134,6 +141,7 @@ const handleRenderSaveBtn = () => {
 
 // Render the list of note titles
 const renderNoteList = async (notes) => {
+
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -195,5 +203,5 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
-
 getAndRenderNotes();
+
