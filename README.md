@@ -22,7 +22,7 @@ The note taker app takes and stores your notes and can perform the following fun
 - Managing notes and tasks.
 
 ### Screenshot
-![](./images/fireshot/img22.png)
+![](./assets/images/FireShot%20Capture%20008%20-%20Note%20Taker%20-%20note-taker-usyd.herokuapp.com.png)
 
 ## Built with
 ### Programming Languages
