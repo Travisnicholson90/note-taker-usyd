@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const homePageRouter = require('./routes/homepage');
 const notesRouter = require('./routes/notes');
 
 app.use(express.json());
