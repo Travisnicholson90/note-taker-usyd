@@ -10,7 +10,6 @@ router.get('/api/notes', (req, res) => {
             console.error(err);
         } else {
             const parsedData = JSON.parse(data);
-            console.log('parsedData from GET', parsedData);
             res.json(parsedData);
         }
     });
@@ -47,5 +46,17 @@ router.post('/api/notes', (req, res) => {
         }
     });
 });
+
+// DELETE requests
+router.delete('/api/notes/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    
+    let notes = JSON.parse(fs.readFileSync('./db/db.json'));
+    notes = notes.filter((note) => note.id !== id);
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+  
+    res.json(notes);
+  });
 
 module.exports = router;
